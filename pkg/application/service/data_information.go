@@ -17,17 +17,17 @@ func newDataInformation(r *mux.Router) {
 func userFileNames(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
-	username := params[username]
+	usr := params[username]
 
-	fileNames, err := StorageProvider.GetFileInformation(r.Context(), username)
+	fileNames, err := StorageProvider.GetFileInformation(r.Context(), usr)
 	if err != nil {
 		body := application.NewResponse(nil, err)
-		writeReponse(w, r, body)
+		writeReponse(w, body)
 		return
 	}
 
 	body := application.NewResponse(fileNames)
-	writeReponse(w, r, body)
+	writeReponse(w, body)
 }
 
 func testHandler(w http.ResponseWriter, r *http.Request) {
@@ -37,5 +37,5 @@ func testHandler(w http.ResponseWriter, r *http.Request) {
 
 	body := application.NewResponse(fmt.Sprintf("test: %v", text))
 
-	writeReponse(w, r, body)
+	writeReponse(w, body)
 }

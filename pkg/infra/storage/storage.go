@@ -49,7 +49,7 @@ func (sp *StorageProvider) GetFileContent(ctx context.Context, username string, 
 	return byt, nil
 }
 
-func (sp *StorageProvider) UploadSmallFile(ctx context.Context, username string, item string) error {
+func (sp *StorageProvider) UploadSmallFile(ctx context.Context, username string, itemName string, itemContent []byte) error {
 
 	// signing and access control
 
@@ -58,10 +58,10 @@ func (sp *StorageProvider) UploadSmallFile(ctx context.Context, username string,
 	// ).Key([]byte("secret")).NewWriter(ctx)
 
 	wtr := sp.Handler.Object(
-		fmt.Sprintf("%s/%s", username, item),
+		fmt.Sprintf("%s/%s", username, itemName),
 	).NewWriter(ctx)
 
-	if _, err := wtr.Write([]byte("top secret11")); err != nil {
+	if _, err := wtr.Write(itemContent); err != nil {
 		return err
 	}
 	if err := wtr.Close(); err != nil {
