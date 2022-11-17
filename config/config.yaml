@@ -8,3 +8,5 @@ data-db-config:
   name: data_db
   username: service
   password: ${DATA_DB_SERVICE_PASS}
+cloud-storage-config:
+  bucket-name: ${CLOUD_BUCKET_NAME}

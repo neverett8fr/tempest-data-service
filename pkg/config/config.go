@@ -26,9 +26,14 @@ type DB struct {
 	Name     string `yaml:"name"`
 }
 
+type Storage struct {
+	BucketName string `yaml:"bucket-name"`
+}
+
 type Config struct {
 	Service Service `yaml:"data-service-config"`
 	DB      DB      `yaml:"data-db-config"`
+	Storage Storage `yaml:"cloud-storage-config"`
 }
 
 func Initialise() (*Config, error) {
