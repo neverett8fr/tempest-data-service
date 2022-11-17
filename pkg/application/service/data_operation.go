@@ -15,7 +15,7 @@ import (
 )
 
 func newDataOperation(r *mux.Router) {
-	r.HandleFunc("/data/{username}", tt).Methods(http.MethodPost)
+	r.HandleFunc("/data/test/{username}", tt).Methods(http.MethodGet)
 }
 
 func tt(w http.ResponseWriter, r *http.Request) {

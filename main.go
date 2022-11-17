@@ -26,20 +26,20 @@ func main() {
 	}
 	log.Println("config initialised")
 
-	serviceDB, err := cmd.OpenDB(&conf.DB)
-	if err != nil {
-		log.Fatalf("error starting db, err %v", err)
-		return
-	}
-	defer serviceDB.Close()
-	log.Println("connection to DB setup")
+	// serviceDB, err := cmd.OpenDB(&conf.DB)
+	// if err != nil {
+	// 	log.Fatalf("error starting db, err %v", err)
+	// 	return
+	// }
+	// defer serviceDB.Close()
+	// log.Println("connection to DB setup")
 
-	err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
-	if err != nil {
-		log.Fatalf("error running DB migrations, %v", err)
-		return
-	}
-	log.Println("DB migrations ran")
+	// err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
+	// if err != nil {
+	// 	log.Fatalf("error running DB migrations, %v", err)
+	// 	return
+	// }
+	// log.Println("DB migrations ran")
 
 	router := getRoutes()
 	log.Println("API routes retrieved")
