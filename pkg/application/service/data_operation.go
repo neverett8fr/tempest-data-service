@@ -8,10 +8,11 @@ import (
 )
 
 func newDataOperation(r *mux.Router) {
-	r.HandleFunc("/data/{username}/{item}", userFileContent).Methods(http.MethodGet)
+	r.HandleFunc("/data/{username}/{item}", userFileDownloadSmall).Methods(http.MethodGet)
+	r.HandleFunc("/data/{username}/{item}", userFileUploadSmall).Methods(http.MethodPost)
 }
 
-func userFileContent(w http.ResponseWriter, r *http.Request) {
+func userFileDownloadSmall(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
 	username := params[username]
@@ -27,6 +28,26 @@ func userFileContent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body := application.NewResponse(string(fileContent))
+	writeReponse(w, r, body)
+
+}
+
+func userFileUploadSmall(w http.ResponseWriter, r *http.Request) {
+
+	params := mux.Vars(r)
+	username := params[username]
+	item := params[item]
+
+	err := StorageProvider.UploadSmallFile(
+		r.Context(), username, item,
+	)
+	if err != nil {
+		body := application.NewResponse(nil, err)
+		writeReponse(w, r, body)
+		return
+	}
+
+	body := application.NewResponse("yay")
 	writeReponse(w, r, body)
 
 }
