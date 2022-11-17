@@ -8,20 +8,20 @@ services:
     build: .
     ports:
     - "8080:8080"
-  postgres:
-    image: postgres:14.5
-    restart: always
-    environment:
-    - POSTGRES_DB=data_db
-    - POSTGRES_USER=service
-    - POSTGRES_PASSWORD=123LocalDBPass
-    logging:
-      options:
-        max-size: 10m
-        max-file: "3"
-    ports:
-    - '5432:5432'
-    volumes: 
-    - ./db-data/:/var/lib/postgresql/data/
-    # copy the sql script to create tables
-    - ./db/migrations/0_init.up.sql:/docker-entrypoint-initdb.d/0_init.up.sql
+  # postgres:
+  #   image: postgres:14.5
+  #   restart: always
+  #   environment:
+  #   - POSTGRES_DB=data_db
+  #   - POSTGRES_USER=service
+  #   - POSTGRES_PASSWORD=123LocalDBPass
+  #   logging:
+  #     options:
+  #       max-size: 10m
+  #       max-file: "3"
+  #   ports:
+  #   - '5432:5432'
+  #   volumes: 
+  #   - ./db-data/:/var/lib/postgresql/data/
+  #   # copy the sql script to create tables
+  #   - ./db/migrations/0_init.up.sql:/docker-entrypoint-initdb.d/0_init.up.sql

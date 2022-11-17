@@ -1,12 +1,12 @@
 data-service-config:
   host: "0.0.0.0"
   port: 8080
-data-db-config:
-  driver: "postgres"
-  host: ${DATA_DB_HOST}
-  port: ${DATA_DB_PORT}
-  name: data_db
-  username: service
-  password: ${DATA_DB_SERVICE_PASS}
+# data-db-config:
+#   driver: "postgres"
+#   host: ${DATA_DB_HOST}
+#   port: ${DATA_DB_PORT}
+#   name: data_db
+#   username: service
+#   password: ${DATA_DB_SERVICE_PASS}
 cloud-storage-config:
   bucket-name: ${CLOUD_BUCKET_NAME}
