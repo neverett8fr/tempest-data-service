@@ -2,6 +2,8 @@ package storage
 
 import (
 	"context"
+	"fmt"
+	"io"
 
 	"cloud.google.com/go/storage"
 	"google.golang.org/api/iterator"
@@ -29,4 +31,20 @@ func (sp *StorageProvider) GetFileInformation(ctx context.Context, username stri
 	}
 
 	return fileInformation, nil
+}
+
+func (sp *StorageProvider) GetFileContent(ctx context.Context, username string, item string) ([]byte, error) {
+	rdr, err := sp.Handler.Object(
+		fmt.Sprintf("%s/%s", username, item),
+	).NewReader(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	byt, err := io.ReadAll(rdr)
+	if err != nil {
+		return nil, err
+	}
+
+	return byt, nil
 }

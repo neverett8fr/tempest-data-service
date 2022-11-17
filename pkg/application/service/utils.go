@@ -17,6 +17,7 @@ var (
 
 const (
 	username = "username"
+	item     = "item"
 )
 
 func NewServiceRoutes(r *mux.Router, conf config.Config) {
