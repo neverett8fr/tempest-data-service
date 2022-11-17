@@ -12,7 +12,7 @@ import (
 // Route declaration
 func getRoutes() *mux.Router {
 	r := mux.NewRouter()
-	application.NewDataInformation(r)
+	application.NewServiceRoutes(r)
 
 	return r
 }

@@ -8,8 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func NewDataInformation(r *mux.Router) {
-	r.HandleFunc("/test/{text}", testHandler).Methods("GET")
+func newDataInformation(r *mux.Router) {
+	r.HandleFunc("/test/{text}", testHandler).Methods(http.MethodGet)
 }
 
 func testHandler(w http.ResponseWriter, r *http.Request) {
